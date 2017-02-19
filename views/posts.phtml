@@ -1,0 +1,12 @@
+<?php foreach ($_posts as $post) : ?>
+	<div class="post">
+		<h2><a href="/blog/<?= $post['id'] ?>"><?= $post['title'] ?></h2></a>
+
+		<div class="date"><?= $post['date'] ?></div>
+
+		<?= $post['content'] ?>
+	</div>
+<?php endforeach ?>
+
+<a href="?page=<?php echo $page-1?>" class="pagination-arrow newer">Newer</a>
+<a href="?page=<?php echo $page+1?>" class="pagination-arrow older">Older</a>

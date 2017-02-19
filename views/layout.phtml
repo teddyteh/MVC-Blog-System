@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<base href="/localhost" />
+	<meta charset="UTF-8" />
+	<title><?= $page_title ?></title>
+	<link rel="stylesheet" href="style.css" type="text/css"/>
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&subset=latin,cyrillic-ext" rel="stylesheet" />
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+</head>
+<body>
+
+	<aside>
+		<h1><?= $blog_title ?></h1>
+
+		<p class="description">test desc</p>
+
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="blog">Blog</a></li>
+			<li><a href="contact">Contact me</a></li>
+		</ul>
+
+		<p class="author">author info goes here</p>
+	</aside>
+
+	<section id="content">
+		<?php $this->controller->renderView(); // renders the current view into the template ?>
+	</section>
+
+</body>
+</html>
