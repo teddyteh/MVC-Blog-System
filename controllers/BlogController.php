@@ -1,29 +1,33 @@
 <?php
 
+/*
+* Handles blog post requests
+*/
 class BlogController extends Controller {
 	function process($params) {
-		$blogManager = new BlogManager();
+		// The BlogManager model class manages blog posts
+        $blogManager = new BlogManager();
 
-		// HTML head
-        $this->page = array(
-            'title' => "Blog",
-        );
+		$this->page['title'] = 'Blog';
 
-        if (!empty($params[1])) {
-            $post = $blogManager->getPostById($params[1]);
+        // Check if a post id is given
+        if (!empty($params[0])) {
+            // Get the post
+            $post = $blogManager->getPostById($params[0]);
 
+            // A post by the given id doesn't exist
             if (!$post)
                 $this->redirect('error');
             
-            // Sets the template variables
             $this->data['post'] = $post;
 
-            // Sets the template
             $this->view = 'post';            
         } else {
+            // No id is given, get the latest 5 posts
             $posts = $blogManager->getPosts(5);
 
             $this->data['posts'] = $posts;
+
             $this->view = 'posts';
         }
 	}

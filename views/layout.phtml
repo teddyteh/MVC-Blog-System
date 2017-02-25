@@ -5,7 +5,7 @@
 	<meta charset="UTF-8" />
 	<title><?= $page_title ?></title>
 	<link rel="stylesheet" href="style.css" type="text/css"/>
-	<link href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&subset=latin,cyrillic-ext" rel="stylesheet" />
+	<link href="//fonts.googleapis.com/css?family=Open+Sans+Condensed:700&subset=latin,cyrillic-ext" rel="stylesheet" />
 
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -17,7 +17,7 @@
 	<aside>
 		<h1><?= $blog_title ?></h1>
 
-		<p class="description">test desc</p>
+		<p class="description"><?= $blog_description ?></p>
 
 		<ul>
 			<li><a href="/">Home</a></li>
@@ -25,7 +25,15 @@
 			<li><a href="contact">Contact me</a></li>
 		</ul>
 
-		<p class="author">author info goes here</p>
+		<p class="author">
+			<?php 
+				if (isset($_SESSION['user'])) {
+				   echo "<a href='/account/logout/'>Logout</a>"; 
+				} else {
+					echo "<a href='/account/login/'>Login</a>"; 
+				}
+			?>
+		</p>
 	</aside>
 
 	<section id="content">

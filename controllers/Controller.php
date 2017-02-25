@@ -1,6 +1,10 @@
 <?php
 
+/*
+* Base Controller class
+*/
 abstract class Controller {
+    // An array which its indexes will be available as variables in its view 
 	protected $data = array();
 	protected $view = "";
 	protected $page = array('title' => '', 'description' => '');
@@ -21,6 +25,25 @@ abstract class Controller {
 		header("Connection: close");
         exit;
 	}
+
+    public function authUser($admin = false)
+    {
+        $userManager = new UserManager();
+        $user = $userManager->getUser();
+        if (!$user || ($admin && !$user['admin']))
+        {
+            echo('You are not authorized to complete this action.');
+            $this->redirect('account/login');
+        }
+    }
+
+    public function getUser()
+    {
+        $userManager = new UserManager();
+        $user = $userManager->getUser();
+        if ($user)
+            return $user;
+    }
 
 	/**
      * Protects any variable by converting HTML special characters to entities

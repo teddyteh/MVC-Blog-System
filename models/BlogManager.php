@@ -1,38 +1,54 @@
 <?php
 
+/*
+* Manages blog posts
+*/
 class BlogManager {
-	// Returns an article from the database based on a URL
+	// Return a post given an id
     public function getPostById($id)
     {
     	return Db::queryOne('
-            SELECT *
+            SELECT posts.*, users.name
             FROM posts
-            WHERE id = ?
+            LEFT JOIN users
+            ON posts.posted_by = users.user_id
+            WHERE posts.post_id = ?
         ', array($id));
     }
 
+    // Return the specified number of posts
     public function getPosts($number)
     {
         return Db::queryAll('
-            SELECT *
+            SELECT posts.*, users.name
             FROM posts
-            ORDER BY id DESC
+            LEFT JOIN users
+            ON posts.posted_by = users.user_id
+            ORDER BY post_id DESC
         ');
     }
 
+    // Save changes to a post
     public function savePost($id, $post)
 	{
         if (!$id)
             Db::insert('posts', $post);
         else
-            Db::update('posts', $post, 'WHERE id = ?', array($id));
+            Db::update('posts', $post, 'WHERE post_id = ?', array($id));
 	}
 
-	public function removeArticle($id)
+    // Remove a post
+    public function removePost($id)
 	{
         Db::query('
             DELETE FROM posts
-            WHERE id = ?
+            WHERE post_id = ?
         ', array($id));
 	}
+
+    // Get the id of the last inserted post
+    public function getLastPostId()
+    {
+        return Db::getLastId();
+    }
 }

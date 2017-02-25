@@ -1,5 +1,9 @@
 <?php
 
+$config = include('config.php');
+
+session_start();
+
 spl_autoload_register(function ($class_name) {
 	// Ends with a string "Controller"?
     if (preg_match('/Controller$/', $class_name))
@@ -9,7 +13,7 @@ spl_autoload_register(function ($class_name) {
 });
 
 // Connects to the database
-Db::connect("127.0.0.1", "root", "", "mvc");
+Db::connect($config['host'], $config['user'], $config['pass'], $config['table']);
 
 $router = new RouterController();
 $router->process($_SERVER['REQUEST_URI']);

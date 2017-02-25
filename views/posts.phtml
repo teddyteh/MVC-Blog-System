@@ -1,10 +1,24 @@
+<?php 
+	if (isset($_SESSION['user']['admin']) && ($_SESSION['user']['admin'] == 1)) {
+	   echo "<a href='/posts/add' class='pagination-arrow older'>New post</a><div class='post'></div>"; 
+	}
+?>
+
 <?php foreach ($_posts as $post) : ?>
 	<div class="post">
-		<h2><a href="/blog/<?= $post['id'] ?>"><?= $post['title'] ?></h2></a>
+		<h2><a href="/blog/<?= $post['post_id'] ?>"><?= $post['title'] ?></h2></a>
 
-		<div class="date"><?= $post['date'] ?></div>
+		<div class="date">
+			Posted <?= $post['date'] ?> by <?= $post['name'] ?> 
+			
+			<?php 
+				if (isset($_SESSION['user']['admin']) && ($_SESSION['user']['admin'] == 1)) {
+				   echo "<div style='float: right'><a href='/posts/remove/" . $post['post_id'] . "'>Remove post</a> | <a href='/posts/edit/	" . $post['post_id'] . "'>Edit post</a></div>"; 
+				}
+			?>
+		</div>
 
-		<?= $post['content'] ?>
+		<?= $post['content'] ?><br />
 	</div>
 <?php endforeach ?>
 
