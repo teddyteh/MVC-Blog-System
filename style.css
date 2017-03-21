@@ -53,12 +53,6 @@ p{
 	font: 14px 'Open Sans Condensed', sans-serif;
 }
 
-#editor-post-title{
-	border: none;
-	font: 28px 'Open Sans Condensed', sans-serif;
-	width: 100%;
-}
-
 h1 a, h2 a{
 	color:#4f4f4f !important;
 	text-decoration: none !important;
@@ -69,12 +63,16 @@ h1 a, h2 a{
 	Content & Posts
 -----------------------------*/
 #content{
-	height: 100%;
 	position: absolute;
 	font: 16px/1.5 'PT Serif', Times, Cambria, serif;
 	width: 580px;
 	left: 50%;
 	margin-left: -100px;
+}
+
+#content p,
+#content ul{
+	margin-bottom:25px;
 }
 
 #content ul{
@@ -132,16 +130,75 @@ h1 a, h2 a{
 
 .page {
 	padding: 50px 0 15px 0;
-	height: 100%;
+}
+
+.tag {
+	font: bold 12px/1 'Open Sans Condensed', sans-serif;
+	color: #555 !important;
+	text-transform: uppercase;
+}
+
+.tag .vis-hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+.tag label{
+	display: inline-block;
+	font: bold 12px/1 'Open Sans Condensed', sans-serif;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background-color: white;
+	color: #555 !important;
+	padding: 4px 6px;
+	text-decoration: none !important;
+	text-transform: uppercase;
+}
+
+.tag input:checked + label {
+  	background-color: buttonface;
+}
+
+.tag input {
+	font: bold 12px/1 'Open Sans Condensed', sans-serif;
+	color: #555 !important;
+	text-transform: uppercase;
+}
+
+.form-group textarea{
+	height: 100px;
+}
+
+.form-group input{
+	display: inline-block;
+	font: bold 16px/1 'Open Sans Condensed', sans-serif;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin: 20px 15px;
+	background-color: white;
+	color: #555 !important;
+	padding: 8px 12px;
+	text-decoration: none !important;
+	text-transform: uppercase;
+	position: relative;
+	float:right;
+}
+
+.input {
+	border: none;
+	font: 28px 'Open Sans Condensed', sans-serif;
+	width: 100%;
 }
 
 .form-control{
 	font: 14px 'Open Sans Condensed', sans-serif;
 	width: 100%;
-}
-
-.form-group textarea{
-	height: 100px;
 }
 
 
@@ -194,7 +251,7 @@ aside p.author{
 
 
 /*----------------------------
-	Buttons
+	Pagination buttons
 -----------------------------*/
 .pagination-arrow{
 	display: inline-block;
@@ -234,22 +291,6 @@ aside p.author{
 	left:auto;
 	right:3px;
 	border-color: transparent transparent transparent #555;
-}
-
-.form-group input{
-	background-color: white;
-    color: black;
-	display: inline-block;
-	font: bold 16px/1 'Open Sans Condensed', sans-serif;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	margin-top: 20px;
-	color: #555 !important;
-	padding: 8px 12px;
-	text-decoration: none !important;
-	text-transform: uppercase;
-	position: relative;
-	float:right;
 }
 
 

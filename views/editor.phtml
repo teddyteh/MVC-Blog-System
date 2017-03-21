@@ -7,15 +7,26 @@
 	    	<table style="width:100%">
 	    		<tr>
 				    <td><h3>Title</h3></td>
-				    <td><input id="editor-post-title" type="text" name="title" value="<?= $post['title'] ?>" placeholder="Example title" /></td>
+				    <td><input type="text" class="input" name="title" value="<?= $post['title'] ?>" placeholder="Example title" /></td>
 			  	</tr>
 	    	</table>
 	    </div>
 
 	    <textarea name="content"><?= $post['content'] ?></textarea><br />
 
-	    <div class="form-group">
-        	<input type="submit" value="<?php echo ((strcmp($page_title, 'Add a post') == 0) ? 'Add post' : 'Save changes'); ?>" />
+	    <div class="tag">
+	    	Tags:
+	    	
+	    	<?php $tagCount = 0; foreach ($tags as $tag) : ?>
+		    	<input id="tag-<?php echo $tag['tag_id']; ?>" type="checkbox" name="tags[]" class="vis-hidden" value="<?php echo $tag['tag_id']; ?>" <?php if (in_array($tag['tag_name'], explode(',', $post['tags']))) { echo "checked"; } ?>/>
+				<label for="tag-<?php echo $tag['tag_id']; ?>"><?php echo $tag['tag_name'] ?></label>
+        	<?php $tagCount++; endforeach ?>
+
+        	<input type="hidden" name="tagCount" value="<?php echo $tagCount; ?>">
+        </div>
+
+        <div class="form-group">
+        	<input type="submit" value="Save changes" />
         </div>
 	</form>
 

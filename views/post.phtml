@@ -13,6 +13,18 @@
 	</div>
 
 	<?= $_post['content'] ?><br />
+	<?php
+		if (!empty($post['tags'])) {
+			$tags = explode(',', $post['tags']);
 
+			echo "<div class='tag'><label>Tags: ";
+
+			foreach($tags as $tag) {
+				echo "<a href='/tag/" . $tag . "'>" . $tag . "</a> ";
+			}
+
+			echo "</div><label>";
+		}
+	 ?><br />
 
 </div>

@@ -17,6 +17,7 @@ class RouterController extends Controller {
 		$parsedUrl["path"] = trim($parsedUrl["path"]);
 		// Split the address by slashes
 		$explodedUrl = explode("/", $parsedUrl["path"]);
+		
 		return $explodedUrl;
 	}
 
@@ -26,6 +27,7 @@ class RouterController extends Controller {
 		$text = str_replace('-', ' ', $text);
 		$text = ucwords($text);
 		$text = str_replace(' ', '', $text);
+
 		return $text;
 	}
 

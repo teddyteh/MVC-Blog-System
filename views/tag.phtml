@@ -2,6 +2,8 @@
 	if (isset($_SESSION['user']['admin']) && ($_SESSION['user']['admin'] == 1)) {
 	   echo "<a href='/posts/add' class='pagination-arrow older'>New post</a><div class='post'></div>"; 
 	}
+
+	echo "<div class='page'><h2>Showing results for \"" . $tag . "\"</h2></div>";
 ?>
 
 <?php foreach ($_posts as $post) : ?>
@@ -19,21 +21,8 @@
 		</div>
 
 		<?= $post['content'] ?><br />
-		<?php
-			if (!empty($post['tags'])) {
-				$tags = explode(',', $post['tags']);
-
-				echo "<div class='tag'><label>Tags: ";
-
-				foreach($tags as $tag) {
-					echo "<a href='/tag/" . $tag . "'>" . $tag . "</a> ";
-				}
-
-				echo "</div></label>";
-			}
-		 ?><br />
 	</div>
 <?php endforeach ?>
 
-<a href="?page=<?php echo $page-1?>" class="pagination-arrow newer">Newer</a>
-<a href="?page=<?php echo $page+1?>" class="pagination-arrow older">Older</a>
+<a href="" class="pagination-arrow newer">Newer</a>
+<a href="" class="pagination-arrow older">Older</a>

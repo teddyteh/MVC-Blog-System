@@ -1,0 +1,83 @@
+<div class="page">
+	<h2><?= $page_title ?></h2>
+
+	<form method="POST">
+	    <input type="hidden" name="post_id" value="<?= $post['post_id'] ?>" />
+	    <div>
+	    	<table style="width:100%">
+	    		<tr>
+				    <td><h3>Title</h3></td>
+				    <td><input type="text" class="input" name="title" value="<?= $post['title'] ?>" placeholder="Example title" /></td>
+			  	</tr>
+	    	</table>
+	    </div>
+
+	    <textarea name="content"><?= $post['content'] ?></textarea><br />
+
+	    <div class="tag">
+	    	<table>
+	    		<tr>
+				    <td>Tags:</td>
+				    <td id="tags">
+				    	<?php foreach ($tags as $tag) : ?>
+					    	<input id="tag-<?php echo $tag['tag_id']; ?>" type="checkbox" name="tags[]" class="vis-hidden" value="<?php echo $tag['tag_id']; ?>" <?php if (in_array($tag['tag_name'], explode(',', $post['tags']))) { echo "checked"; } ?> />
+							<label for="tag-<?php echo $tag['tag_id']; ?>"><?php echo $tag['tag_name'] ?></label>
+			        	<?php endforeach ?>
+				    </td>
+			  	</tr>
+			  	<tr>
+			  		<td></td>
+			  		<td>
+			  			<input id="add-tag-textbox" type="input" />
+			        	<input id="add-tag" class="vis-hidden" />
+						<label id="add-tag-label" for="add-tag">Add tag</label>
+				    	<div id="div1" />
+			  		</td>
+			  	</tr>
+	    	</table>
+        </div>
+
+        <div class="form-group">
+        	<input type="submit" value="Save changes" />
+        </div>
+	</form>
+
+	<script type="text/javascript" src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+	<script type="text/javascript">
+	    tinymce.init({
+	    	height: "480",
+	        selector: "textarea[name=content]",
+	        plugins: [
+	            "advlist autolink lists link image charmap print preview anchor",
+	            "searchreplace visualblocks code fullscreen",
+	            "insertdatetime media table contextmenu paste"
+	        ],
+	        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+	        entities: "160,nbsp",
+	        entity_encoding: "named",
+	        entity_encoding: "raw"
+	    });
+	</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script>
+		$( document ).ready(function() {
+		    $("#add-tag").click(function(){
+					$.ajax({
+                    type: 'GET',
+                    url: 'addTag.php',
+                    data: { tag: $('#add-tag-textbox').val() },
+                    success: function (data) {
+                    	$("#div1").text("");
+                        $("#tags").append(data);
+                    },
+                    error: function (jqXHR, exception) {
+                    	$("#div1").text(jqXHR.responseText);
+                    }
+                });
+			});
+		});
+	</script>
+</div>
+
+

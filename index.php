@@ -1,6 +1,6 @@
 <?php
 
-$config = include('config.php');
+$config = require('config.php');
 
 session_start();
 

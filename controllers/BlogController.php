@@ -27,7 +27,7 @@ class BlogController extends Controller {
             $posts = $blogManager->getPosts(5);
 
             $this->data['posts'] = $posts;
-
+            
             $this->view = 'posts';
         }
 	}

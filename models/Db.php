@@ -23,7 +23,8 @@ class Db {
 	{
 		$result = self::$connection->prepare($query);
 		$result->execute($params);
-		return $result->fetch();
+
+		return $result->fetch(\PDO::FETCH_ASSOC);
 	}
 
 	// Execute a query and return all resulting rows as an associative array
@@ -31,7 +32,8 @@ class Db {
 	{
         $result = self::$connection->prepare($query);
         $result->execute($params);
-        return $result->fetchAll();
+
+        return $result->fetchAll(\PDO::FETCH_ASSOC);
 	}
 
 	// Execute a query and return the number of affected rows
@@ -39,6 +41,15 @@ class Db {
 	{
 		$result = self::$connection->prepare($query);
 		$result->execute($params);
+
+		return $result->rowCount();
+	}
+
+	public static function queryTest($query, $params = array())
+	{
+		$result = self::$connection->prepare($query);
+		$result->execute(array_values($params));
+		
 		return $result->rowCount();
 	}
 
